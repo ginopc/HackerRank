@@ -2,7 +2,7 @@
 
 This is a solution library for Hacker Rank problem solution.
 
-## Aboutn
+## About
 
 * Author  : Maurizio Aru
 * Created : 2018.10.30
