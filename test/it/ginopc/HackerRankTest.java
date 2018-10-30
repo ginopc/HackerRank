@@ -5,18 +5,20 @@
  */
 package it.ginopc;
 
+import org.junit.Test;
+
 /**
  *
  * @author Maurizio Aru
  * @version 20181030
  */
-public class HackerRank {
+public class HackerRankTest {
+    
+    public HackerRankTest() {
+    }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        System.out.println("** HackerRank Problem Solve Library **");
+    @Test
+    public void testMain() {
     }
     
 }
