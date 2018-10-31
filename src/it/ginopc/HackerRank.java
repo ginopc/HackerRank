@@ -23,12 +23,74 @@
  */
 package it.ginopc;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  *
  * @author Maurizio Aru
  * @version 20181030
  */
 public class HackerRank {
+    
+    /**
+     * Return a+b
+     * @param a first item to sum
+     * @param b second item to sum
+     * @return sum(a+b)
+     */
+    static int solveMeFrist(int a, int b){
+        return a+b;
+    }
+    
+    /**
+     * Sum all items on array
+     * @param ar array of items
+     * @return sum of items
+     */
+    static int simpleArraySum(int[] ar) {
+        int result = 0;
+        
+        for (int i=0; i<ar.length; i++){
+            result += ar[i];
+        }
+        
+        return result;
+    }
+    
+    /**
+     * Compare triplets and assign a score follow this rule:
+     *  if a[i] > b[i] then +1 to a
+     *  if a[i] < b[i] then +1 to b
+     *  if a[i] = b[i] nothing to do
+     * 
+     * @return List<Integer> scores
+     */ 
+    static List<Integer> compareTriplets(List<Integer> a, List<Integer> b) {
+        int ap = 0; // Alice's rating
+        int bp = 0; // Bob's rating
+        Integer av = 0; // current Alice value
+        Integer bv = 0; // current Bob value
+        List<Integer> result = new ArrayList<Integer>();
+
+        Iterator ai = a.iterator();
+        Iterator bi = b.iterator();
+        while(ai.hasNext()){
+            av = (Integer) ai.next();
+            bv = (Integer) bi.next();
+            
+            if (av > bv)
+                ap += 1;
+            else if (av < bv)
+                bp += 1;
+            
+        }
+        
+        result.add(ap);
+        result.add(bp);
+        return result;
+    }    
 
     /**
      * @param args the command line arguments
