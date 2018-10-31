@@ -407,6 +407,11 @@ public class HackerRank {
      */
     public static void main(String[] args) {
         System.out.println("** HackerRank Problem Solve Library **");
+        
+        int[] a = {2, 4},
+              b = {16, 32, 96};
+        int result = getTotalX(a, b);
+        System.out.println(String.format("items: %d", result));
     }
     
 }
