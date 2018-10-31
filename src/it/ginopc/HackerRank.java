@@ -40,7 +40,7 @@ public class HackerRank {
      * @param b second item to sum
      * @return sum(a+b)
      */
-    static int solveMeFrist(int a, int b){
+    static int solveMeFirst(int a, int b){
         return a+b;
     }
     

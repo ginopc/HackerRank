@@ -23,6 +23,9 @@
  */
 package it.ginopc;
 
+import java.util.ArrayList;
+import java.util.List;
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
@@ -36,7 +39,41 @@ public class HackerRankTest {
     }
 
     @Test
-    public void testMain() {
+    public void testSolveMeFirst() {
+        System.out.println("solveMeFirst Test");
+        
+        int a=1, b=2;
+        int expResult = 3;
+        int result = HackerRank.solveMeFirst(a, b);
+        
+        assertEquals(expResult, result);
     }
     
+    @Test
+    public void testSimpleArraySum(){
+        System.out.println("simpleArraySum Test");
+        
+        int[] arr = {1, 2, 3};
+        int expResult = 6;
+        int result = HackerRank.simpleArraySum(arr);
+        
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testCompareTriplets() {
+        System.out.println("solveMeFirst Test");
+        
+        List<Integer> a = new ArrayList<Integer>();
+        List<Integer> b = new ArrayList<Integer>();
+        List<Integer> expResult = new ArrayList<Integer>();
+        
+        a.add(1); a.add(2); a.add(3);
+        b.add(3); b.add(2); b.add(1);
+        expResult.add(1); expResult.add(1);
+        List<Integer> result = HackerRank.compareTriplets(a, b);
+        
+        assertEquals(expResult, result);
+        
+    }  
 }
