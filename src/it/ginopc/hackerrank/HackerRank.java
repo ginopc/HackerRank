@@ -21,7 +21,7 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
  */
-package it.ginopc;
+package it.ginopc.hackerrank;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -401,6 +401,50 @@ public class HackerRank {
         
         return result;
     }
+    
+    
+    /**
+     * Count numbers of pairs
+     * @param n number of items
+     * @param ar items array
+     * @return number of pairs
+     */
+    // Complete the sockMerchant function below.
+    static int sockMerchant(int n, int[] ar) {
+        int result = 0;
+        List<Integer> temp = new ArrayList<Integer>();
+        
+        for (int i=0; i<n; i++){
+            if (temp.contains(ar[i])) {
+                result++;
+                temp.remove((Integer) ar[i]);
+            }
+            else {
+                temp.add(ar[i]);
+            }
+        }
+        
+        return result;
+    }
+    
+    static int countingValleys(int n, String s) {
+        int result = 0;
+        int altitude = 0;
+        String tmpMove = "_";
+        
+        for (int i=0; i<s.length(); i++){
+            tmpMove = s.substring(i, i+1);
+            if (tmpMove.equals("U")){
+                altitude++;
+                if (altitude == 0)
+                    result++; // end of valley
+            }
+            else {
+                altitude--;
+            }    
+        }
+        return result;
+    }    
 
     /**
      * @param args the command line arguments
@@ -409,4 +453,11 @@ public class HackerRank {
         System.out.println("** HackerRank Problem Solve Library **");
     }
     
+    public static void Test(){
+        int n = 8;
+        String s = "UDDDUDUU";
+        
+        int result = countingValleys(n, s);
+        System.out.println(String.format("Valleys: %d", result));
+    }
 }

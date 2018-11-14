@@ -21,8 +21,9 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
  */
-package it.ginopc;
+package it.ginopc.hackerrank;
 
+import it.ginopc.hackerrank.HackerRank;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.*;
@@ -226,4 +227,59 @@ public class HackerRankTest {
         
         assertEquals(expResult, result);
     }
+    
+    @Test
+    public void testSockMerchant1(){
+        System.out.println("sockMerchant Test 1");
+        
+        // define test vars
+        int n = 9;
+        int[] ar = {10, 20, 20, 10, 10, 30, 50, 10, 20};
+        int expResult = 3;
+        
+        int result = HackerRank.sockMerchant(n, ar);
+        System.out.println(String.format("Socks: %d", result));
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testSockMerchant2(){
+        System.out.println("sockMerchant Test 2");
+        
+        // define test vars
+        int n = 8;
+        int[] ar = {10, 20, 10, 20, 10, 20, 10, 20};
+        int expResult = 4;
+        
+        int result = HackerRank.sockMerchant(n, ar);
+        System.out.println(String.format("Socks: %d", result));
+        assertEquals(expResult, result);
+    }   
+    
+    @Test
+    public void testSockMerchant3(){
+        System.out.println("sockMerchant Test 3");
+        
+        // define test vars
+        int n = 10;
+        int[] ar = {1, 1, 3, 1, 2, 1, 3, 3, 3, 3};
+        int expResult = 4;
+        
+        int result = HackerRank.sockMerchant(n, ar);
+        System.out.println(String.format("Socks: %d", result));
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testCountingValleys(){
+        System.out.println("countingValleys Test");
+        int n = 8;
+        String track = "UDDDUDUU";
+        
+        int expResult = 1;
+        int result = HackerRank.countingValleys(n, track);
+        System.out.println(String.format("Valleys: %d", result));
+        assertEquals(expResult, result);
+    }
 }
+
