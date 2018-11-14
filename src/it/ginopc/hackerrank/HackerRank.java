@@ -21,7 +21,7 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
  */
-package it.ginopc;
+package it.ginopc.hackerrank;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -266,6 +266,185 @@ public class HackerRank {
         result = String.format("%s%s", H24s, MMSS);
         return result;
     }
+     /*
+     * Round grades follow this rules:
+     *  if (grade > 38 and grade next to next multiple of 5)
+     *      round to this multiple
+     *  else
+     *       nothing to do
+     */
+    static int[] gradingStudents(int[] grades) {
+        int[] result = new int[grades.length];
+        
+        for (int i=0; i<grades.length; i++){
+            if (grades[i] < 38){
+                // under 38 nothing to do
+                result[i] = grades[i];
+            } else if (grades[i] % 5 > 2) {
+                // if grade is near to next multiple of 5, round grade
+                result[i] = grades[i] + (5 - (grades[i] % 5));
+            } else {
+                // else nothing to to
+                result[i] = grades[i];
+            }
+        }
+        
+        return result;
+    }
+    
+    /**
+     * Return how many values fall between s and t
+     * @param s min value of interval
+     * @param t max value of interval
+     * @param a starting point from first group of values
+     * @param b starting point from second group of values
+     * @param apples first group fall values
+     * @param oranges second group fall values
+     */
+    static int[] countApplesAndOranges(int s, int t, int a, int b, int[] apples, int[] oranges) {
+        int applesHoused = 0;
+        int orangesHoused = 0;
+        int[] result = new int[2];
+
+        // Check apples
+        for (int i=0; i<apples.length; i++)
+            if ((a + apples[i] >= s) && (a + apples[i] <= t))
+                applesHoused++;
+        System.out.println(String.format("%d", applesHoused));
+        
+        // Check oranges
+        for (int j=0; j<oranges.length; j++)
+            if ( (b + oranges[j] >= s) && (b + oranges[j] <= t) )
+                orangesHoused++;
+        System.out.println(String.format("%d", orangesHoused));
+
+        return new int[]{ applesHoused, orangesHoused };
+    }
+    
+    /**
+     * Calculate Minimum Common Divisor
+     * @param a
+     * @param b
+     * @return 
+     */
+    static int mcd(int a, int b){
+        int r = 0;
+        while (b != 0){
+            r = a % b;
+            a = b;
+            b = r;
+        }
+        return a;
+    }
+    
+    /**
+     * Calculate Max Common Multiple for two items
+     * @param a first item
+     * @param b second item
+     * @return Calculated value
+     */
+    static int mcm(int a, int b){
+        return a * b / mcd(a, b);
+    }
+    
+    /**
+     * Calculate Max Common Multiple of array of integer
+     * @param arr items
+     * @return calculate value
+     */
+    static int mcm(int[] arr){
+        int a = arr[0];
+        
+        if (arr.length == 1) return arr[0];
+        
+        int[] newArr = new int[arr.length -1];
+        for (int i=1; i<arr.length; i++)
+            newArr[i-1] = arr[i];
+        int b = mcm(newArr);
+        
+        return mcm(a,b);
+    }
+    
+    /**
+     * Calculate the number of integers that are between th sets
+     * @param a first integer set
+     * @param b second integer set
+     * @return count of numbers
+     */
+    static int getTotalX(int[] a, int[] b) {
+        int result = 0;
+        int minSet=a[0], maxSet=b[0];
+
+        // calcolo il mcm degli elementi di a
+        int minimum = mcm(a);
+        for (int i=0; i<b.length; i++){
+            if (b[i] < maxSet) maxSet = b[i];
+        }
+        
+         // Calcolo quanti multipli di mcm sono divisori degli elementi di b
+        int factor = minimum;
+        int count = 1;
+        boolean isDivider = true;
+        while (factor <= maxSet){
+            
+            // check if factor is dividend for b items
+            for (int i=0; i<b.length; i++){
+                if (b[i] % factor != 0)
+                    isDivider = false;
+            }
+            
+            if (isDivider) result++;
+            count++;
+            factor = minimum * (count);
+            isDivider = true; // reset status
+        }
+        
+        return result;
+    }
+    
+    
+    /**
+     * Count numbers of pairs
+     * @param n number of items
+     * @param ar items array
+     * @return number of pairs
+     */
+    // Complete the sockMerchant function below.
+    static int sockMerchant(int n, int[] ar) {
+        int result = 0;
+        List<Integer> temp = new ArrayList<Integer>();
+        
+        for (int i=0; i<n; i++){
+            if (temp.contains(ar[i])) {
+                result++;
+                temp.remove((Integer) ar[i]);
+            }
+            else {
+                temp.add(ar[i]);
+            }
+        }
+        
+        return result;
+    }
+    
+    static int countingValleys(int n, String s) {
+        int result = 0;
+        int altitude = 0;
+        String tmpMove = "_";
+        
+        for (int i=0; i<s.length(); i++){
+            tmpMove = s.substring(i, i+1);
+            if (tmpMove.equals("U")){
+                altitude++;
+                if (altitude == 0)
+                    result++; // end of valley
+            }
+            else {
+                altitude--;
+            }    
+        }
+        return result;
+    }    
 
     /**
      * @param args the command line arguments
@@ -274,4 +453,11 @@ public class HackerRank {
         System.out.println("** HackerRank Problem Solve Library **");
     }
     
+    public static void Test(){
+        int n = 8;
+        String s = "UDDDUDUU";
+        
+        int result = countingValleys(n, s);
+        System.out.println(String.format("Valleys: %d", result));
+    }
 }
